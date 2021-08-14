@@ -10,46 +10,95 @@ import modelo.Cliente;
 
 public class ExportadorCsv extends Exportador{
 
-	public void exportar(String fileName, List<Cliente> listaClientes) {
+	@Override
+	public void exportar(String fileName, List<Cliente> listaCliente) {
 		
+		String ruta = "";
+		int largoStr;
+
+		
+		String[] datosImport = fileName.split("Clientes");
+		ruta = datosImport[0];
+		largoStr = ruta.length();
+		ruta = ruta.substring(0, largoStr - 1);
+
 		
 		try {
-			File carpeta = new File("src/CarpetaExportador");
-			File archivo = new File("src/CarpetaExportador/"+fileName+".csv");
+			File carpeta = new File(ruta);
+			File archivo = new File(fileName);
 			
-			
-			if(carpeta.exists()==false) {
+			if (carpeta.exists() == false) {
+				
 				carpeta.mkdir();
-				System.out.println("La carpeta se creo existosamente");
-			}else {
-				System.out.println("La carpeta ya existe");
-			}
-			archivo.createNewFile();	
-			
-			FileWriter fw = new FileWriter(archivo);
-			BufferedWriter bw = new BufferedWriter(fw);
-			
-			for(Cliente cliente: listaClientes) {
-				String categoria;
-				bw.write(cliente.getRunCliente()+",");
-				bw.write(cliente.getNombreCliente()+",");
-				bw.write(cliente.getApellidoCliente()+",");
-				bw.write(cliente.getAniosCliente()+",");
-				categoria=String.valueOf(cliente.getNombreCategoria());
-				if(categoria.equalsIgnoreCase("Activo")) {
-					bw.write("Activo\n");
-				}else {
-					bw.write("Inactivo\n");
+				
+				archivo.createNewFile();
+				
+				llenarArchivo( fileName, listaCliente);
+			} else {
+				
+				if (archivo.exists() == false) {
+					
+					archivo.createNewFile();
+					
+					llenarArchivo( fileName, listaCliente);
+				} else {
+				
+					archivo.delete();
+					
+					archivo.createNewFile();
+					
+					llenarArchivo( fileName, listaCliente);
 				}
 			}
-			System.out.println("Datos exportados correctamente en archivo .csv");
-			bw.close();
-			
-		}catch(IOException e){
-			System.out.println("No fue posible realizar la accion");
+		} catch (IOException e) {
+			System.out.println("\nNo se pudo crear directorio.");
+			System.out.println(e.getMessage());
 		}
-		
+		System.out.println();
+		System.out.println("-----------------------------------------------");
+		System.out.println("Datos de clientes exportados correctamente en formato csv.");
+
 	}
+
 	
+	public void llenarArchivo( String fileName, List<Cliente> listaCliente) {
+		String estado = "";
+		
+		try {
+			
+			File documento = new File(fileName);
+			
+			FileWriter fw = new FileWriter(documento);
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			for (Cliente cli : listaCliente) {
+				
+				cli.getRunCliente();
+				cli.getNombreCliente();
+				cli.getApellidoCliente();
+				cli.getAniosCliente();
+				cli.getNombreCategoria();
+			
+				if (String.valueOf(cli.getNombreCategoria()).equalsIgnoreCase("activo")) {
+					estado = "Activo";
+				} else {
+					estado = "Inactivo";
+				}
+				
+				bw.write(cli.getRunCliente() + "," + cli.getNombreCliente() + "," + cli.getApellidoCliente() + ","
+						+ cli.getAniosCliente() + "," + estado);
+				bw.newLine();
+			}
+		
+			bw.close();
+		} catch (IOException e) {
+			System.out.println("\nEl archivo no existe.");
+			System.out.println(e.getMessage());
+		} catch (RuntimeException e) {
+			System.out.println("\nLista fuera de rango.");
+			System.out.println(e.getMessage());
+		}
+	}
+
 }
 

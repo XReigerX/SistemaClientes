@@ -9,6 +9,8 @@ import modelo.Cliente;
 public class ClienteServicio {
 	
 	List<Cliente> listaClientes;
+	Cliente cliente;
+	
 
 	public ClienteServicio() {
 		super();
@@ -20,15 +22,16 @@ public class ClienteServicio {
 		this.listaClientes = listaClientes;
 	}
 
-	public List<Cliente> getListaClientes() {
-		return listaClientes;
+	public ArrayList<Cliente> getListaClientes() {
+		return (ArrayList<Cliente>) listaClientes;
 	}
 
 	public void setListaClientes(List<Cliente> listaClientes) {
 		this.listaClientes = listaClientes;
 	}
 	
-	public void agregarCliente(Cliente cliente) {
+	public void agregarCliente(String rut,String nombre,String apellido,String anios) {
+		Cliente cliente= new Cliente(rut,nombre,apellido,anios,CategoriaEnum.ACTIVO);
 		listaClientes.add(cliente);
 	}
 	

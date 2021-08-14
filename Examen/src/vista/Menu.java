@@ -1,8 +1,8 @@
 package vista;
 
-import java.util.List;
-import java.util.Scanner;
 
+
+import java.util.Scanner;
 import modelo.Cliente;
 import servicio.ArchivoServicio;
 import servicio.ClienteServicio;
@@ -16,10 +16,12 @@ public class Menu implements AccionesMenu {
 	private int opcion, opcionE;
 	private ClienteServicio clienteS = new ClienteServicio();
 	ArchivoServicio archivoServicio = new ArchivoServicio();
-	ExportadorCsv exportarCsv = new ExportadorCsv();
-	ExportadorTxt exportarTxt = new ExportadorTxt();
+	ExportadorCsv exportadorCsv = new ExportadorCsv();
+	ExportadorTxt exportadorTxt = new ExportadorTxt();
 	private final String archivo = "Clientes";
+	String rutaArchivo;
 	Cliente cliente;
+	Utilidad uti = new Utilidad();
 
 	public Menu() {
 		while (opcion != 6) {
@@ -42,12 +44,31 @@ public class Menu implements AccionesMenu {
 				editarCliente();
 				break;
 			case 4:
-				String ruta;
-				System.out.println("Importacion de datos");
-				System.out.println("Ingrese la ruta");
-				ruta=leer.nextLine();
-				importarDatos(ruta,clienteS.getListaClientes());
+				
+				//uti.limpiandoPantalla();
+				
+				if (!clienteS.getListaClientes().isEmpty()) {
+					
+					System.out.println("Ya existen clientes en la lista.");
+					System.out.println("Los clientes seran agregados a continuacion de los clientes");
+					System.out.println("ingresados por el usuario.");
+					System.out.println("Ingrese 1 para confirmar:");
+					opcion = Integer.parseInt(leer.nextLine().trim());
+					if (opcion==1) {
+						
+						importarDatos();
+					}else {
+						System.out.println();
+						System.out.println("Proceso cargar datos cancelado.");
+					}
+				}else {
+					
+					importarDatos();
+				}
+				System.out.println("Presione Enter para volver al menu principal.");
+				leer.nextLine();
 				break;
+				
 			case 5:
 				System.out.println("Exportacion de datos");
 				System.out.println("Elija el formato a exportar");
@@ -85,20 +106,24 @@ public class Menu implements AccionesMenu {
 
 	@Override
 	public void agregarCliente() {
-		Cliente cliente = new Cliente();
+		//Cliente cliente = new Cliente();
 
 		System.out.println("------Crear Cliente------");
 
 		System.out.println("Ingresa RUN del Cliente: ");
-		cliente.setRunCliente(leer.nextLine());
+		String rut=leer.nextLine();
+		//cliente.setRunCliente(leer.nextLine());
 		System.out.println("Ingresa Nombre del Cliente: ");
-		cliente.setNombreCliente(leer.nextLine());
+		String nombre=leer.nextLine();
+		//cliente.setNombreCliente(leer.nextLine());
 		System.out.println("Ingresa Apellido del Cliente: ");
-		cliente.setApellidoCliente(leer.nextLine());
+		String apellido=leer.nextLine();
+		//cliente.setApellidoCliente(leer.nextLine());
 		System.out.println("Ingresa años como Cliente: ");
-		cliente.setAniosCliente(leer.nextLine());
+		String anios=leer.nextLine();
+		//cliente.setAniosCliente(leer.nextLine());
 		System.out.println("-------------------------");
-		clienteS.agregarCliente(cliente);
+		clienteS.agregarCliente(rut,nombre,apellido,anios);
 
 	}
 
@@ -176,22 +201,90 @@ public class Menu implements AccionesMenu {
 		}
 
 	}
+	
+	
+	
+	
 
-	public void importarDatos(String ruta, List<Cliente> listaCliente) {
-		archivoServicio.cargarDatos(ruta, listaCliente);
+	
+
+	public void importarDatos() {
+		String rutaArchivo = "";
+		System.out.println("---------Cargar Datos en Windows---------------");
+		System.out.println("Ingresa la ruta en donde se encuentra el archivo Clientes.csv:");
+		rutaArchivo = leer.nextLine().trim();
+			
+		archivoServicio.setClienteServicio(clienteS);
+		
+		archivoServicio.cargarDatos(rutaArchivo,clienteS.getListaClientes(),opcion);
 	}
 
+	public void exportarDatos() {
+		String rutaArchivo = "", opConfirmar = "";
+		System.out.println("---------Exportar Datos-----------");
+		System.out.println("Seleccione el formato a exportar:");
+		System.out.println("1.-Formato csv");
+		System.out.println("2.-Formato txt");
+		System.out.println();
+		System.out.println("Ingrese una opcion para exportar:");
+		opConfirmar = leer.nextLine().trim();
+		System.out.println("----------------------------------");
+		System.out.println();
+		
+		if (opConfirmar.equals("1")) {
+			System.out.println("---------Exportar Datos en Windows---------------");
+			System.out.println("Ingresa la ruta en donde desea exportar el archivo clientes.csv:");
+			rutaArchivo = leer.nextLine().trim();
+			
+			rutaArchivo = rutaArchivo + "\\" + archivo + ".csv";
+		
+			exportadorCsv.exportar(rutaArchivo, clienteS.getListaClientes());
+		}else if (opConfirmar.equals("2")) {
+			System.out.println("---------Exportar Datos en Windows---------------");
+			System.out.println("Ingresa la ruta en donde desea exportar el archivo Clientes.txt:");
+			rutaArchivo = leer.nextLine().trim();
+			
+			rutaArchivo = rutaArchivo + "\\" + archivo + ".txt";
+		
+			exportadorTxt.exportar(rutaArchivo, clienteS.getListaClientes());
+		}else {
+			System.out.println();
+			System.out.println("La opcion ingresada no es valida.");
+		}
+	}
+	
+
+	//public void importarDatos(String ruta, List<Cliente> listaCliente) {
+		//archivoServicio.cargarDatos(ruta, listaCliente);
+	//}
+
 	public void exportarDatosCsv() {
-		exportarCsv.exportar(archivo, clienteS.getListaClientes());
+		
+		
+			System.out.println("---------Exportar Datos en Windows---------------");
+			System.out.println("Ingresa la ruta en donde desea exportar el archivo Clientes.csv:");
+			 rutaArchivo = leer.nextLine().trim();	
+			rutaArchivo = rutaArchivo + "\\" + archivo + ".csv";
+			exportadorCsv.exportar(rutaArchivo, clienteS.getListaClientes());
+		
+			
+	
 	}
 
 	public void exportarDatosTxt() {
-		exportarTxt.exportar(archivo, clienteS.getListaClientes());
+		
+		System.out.println("---------Exportar Datos en Windows---------------");
+		System.out.println("Ingresa la ruta en donde desea exportar el archivo clientes.txt:");
+		rutaArchivo = leer.nextLine().trim();
+		rutaArchivo = rutaArchivo + "\\" + archivo + ".txt";
+		exportadorTxt.exportar(rutaArchivo, clienteS.getListaClientes());
 	}
 
 	public void terminarPrograma() {
-		Utilidad uti = new Utilidad();
+		
 		uti.limpiandoPantalla();
 	}
+
+	
 
 }

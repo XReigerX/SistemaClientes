@@ -1,0 +1,120 @@
+-------------Datos del Cliente-------------
+RUN del Cliente: 12
+Nombre del Cliente: 12
+Apellido del Cliente: 12
+A�os como Cliente: 12
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 17.162.856-5
+Nombre del Cliente: Iron
+Apellido del Cliente: Manjar
+A�os como Cliente: 1 a�o
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 10.513.821-6
+Nombre del Cliente: Thor
+Apellido del Cliente: Tita 
+A�os como Cliente: 4 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 17.151.677-8
+Nombre del Cliente: Capit�n
+Apellido del Cliente: Marraqueta
+A�os como Cliente: 9 a�os
+Categor�a del Cliente: Inactivo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 15.414.174-k
+Nombre del Cliente: Juan
+Apellido del Cliente: Monsalves
+A�os como Cliente: 2 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 10.119.738-7
+Nombre del Cliente: Helena
+Apellido del Cliente: P�rez
+A�os como Cliente: 1 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 9.067.590-7
+Nombre del Cliente: Francisco
+Apellido del Cliente: Villalobos
+A�os como Cliente: 5 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 5.122.837-5
+Nombre del Cliente: Pedro
+Apellido del Cliente: Garay
+A�os como Cliente: 3 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 15.019.502-0
+Nombre del Cliente: Alex
+Apellido del Cliente: Pe�a
+A�os como Cliente: 6 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 16.696.577-2
+Nombre del Cliente: Cristi�n
+Apellido del Cliente: Pavez
+A�os como Cliente: 1 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 24.219.544-2
+Nombre del Cliente: Jos�
+Apellido del Cliente: C�ceres
+A�os como Cliente: 10 a�os
+Categor�a del Cliente: Inactivo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 13.495.464-7
+Nombre del Cliente: Adriana
+Apellido del Cliente: Leal
+A�os como Cliente: 4 a�os
+Categor�a del Cliente: Inactivo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 12.128.240-2
+Nombre del Cliente: Veronica
+Apellido del Cliente: Pizarro
+A�os como Cliente: 3 a�os
+Categor�a del Cliente: Activo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 24.286.699-1
+Nombre del Cliente: Ismael
+Apellido del Cliente: Soto
+A�os como Cliente: 1 a�os
+Categor�a del Cliente: Inactivo
+-------------------------------------------
+
+-------------Datos del Cliente-------------
+RUN del Cliente: 20.262.262-8
+Nombre del Cliente: Sergio
+Apellido del Cliente: Palma
+A�os como Cliente: 5 a�os
+Categor�a del Cliente: Inactivo
+-------------------------------------------
+

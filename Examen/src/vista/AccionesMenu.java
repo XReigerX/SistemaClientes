@@ -1,8 +1,6 @@
 package vista;
 
-import java.util.List;
 
-import modelo.Cliente;
 
 public interface AccionesMenu {
 	
@@ -12,7 +10,7 @@ public interface AccionesMenu {
 
 	void editarCliente();
 
-	void importarDatos(String ruta,List<Cliente> listaCliente);
+	void importarDatos();
 
 	void exportarDatosCsv();
 	void exportarDatosTxt();
